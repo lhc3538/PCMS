@@ -1,0 +1,33 @@
+Private Sub Command1_Click()
+If Text1.Text = "3538" Then
+e = MsgBox("高级密码正确。是否继续？", , "确认")
+
+
+
+Form2.Show 1
+Form3.Visible = False
+End If
+End Sub
+
+Private Sub Form_Load()
+
+End Sub
+
+Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = 13 Then
+If Text1.Text = Text2.Text Then
+If Text1.Text = "3538" Then
+e = MsgBox("高级密码正确。是否继续？", , "确认")
+
+
+
+Form2.Visible = True
+End If
+Else
+MsgBox ("密码错误，请重新输入")
+Text1.Text = ""
+
+End If
+
+End If
+End Sub

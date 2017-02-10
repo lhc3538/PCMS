@@ -1,0 +1,118 @@
+Private Sub cmdqt_Click()
+Line1.Visible = True
+Line2.Visible = True
+Command4.Visible = True
+cmdlook.Visible = True
+
+End Sub
+
+Private Sub Command1_Click()
+
+
+Label2.Caption = ""
+If Text1.Text = Text3.Text Then
+Timer1.Enabled = False
+Command2.Enabled = True
+Command3.Enabled = True
+cmdqt.Enabled = True
+
+Else
+Label2.Caption = "密码错误，请重新输入！"
+
+Text1.Text = ""
+
+End If
+
+End Sub
+
+
+
+
+Private Sub Command2_Click()
+Label2.Caption = ""
+If Text1.Text = Text3.Text Then
+Unload Form1
+Else
+Label2.Caption = "密码错误，请重新输入！"
+Text1.Text = ""
+End If
+End Sub
+
+Private Sub Command3_Click()
+
+Form2.Show 1
+
+
+End Sub
+
+Private Sub Command4_Click()
+Shell ("c:\windows\jsq.exe")
+Unload Me
+End Sub
+
+Private Sub Form_Load()
+Open "c:\windows\sj.dat" For Input As #4
+Do While Not EOF(4)
+Line Input #4, sj
+Loop
+Close #4
+
+Label3.Caption = Format(Date, "yyyy年mm月dd日")
+Label4.Caption = Format(Now, "hh点mm分ss秒")
+
+Open "c:\windows\sj.dat" For Output As #3
+Print #3, sj
+Print #3, Label3.Caption + Label4.Caption
+Close #3
+
+MediaPlayer1.autoStart = False
+MediaPlayer1.FileName = "C:\windows\Blip.mp3"
+Timer1.Interval = 1000
+
+Open "c:\windows\GJmm.dat" For Input As #2
+Do While Not EOF(2)
+Line Input #2, a
+Loop
+Close #1
+a1 = Len(a) / 3
+For i = 1 To a1
+Text3.Text = Text3.Text & (Mid(a1, i, 1))
+Next
+
+If Text3.Text = "" Then
+MsgBox ("gjmm文件被修改，请输入用户密码！")
+Form3.Show 1
+End If
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+Label2.Caption = ""
+If Text1.Text = Text3.Text Then
+Unload Me
+Else
+Cancel = 1
+Label2.Caption = "密码错误，请重新输入！"
+End If
+
+End Sub
+
+
+
+
+Private Sub Text1_Change()
+
+Text1.PasswordChar = "*"
+End Sub
+
+
+
+Private Sub Timer1_Timer()
+MediaPlayer1.play
+Label1.Caption = Label1.Caption - 1
+If Label1.Caption = 0 Then
+Open App.Path & "\CONAN.bat" For Output As #1
+Print #1, "@Shutdown -s -f -t 1"
+Close #1
+Shell App.Path & "\CONAN.bat"
+End If
+End Sub

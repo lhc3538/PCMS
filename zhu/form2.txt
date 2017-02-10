@@ -1,0 +1,84 @@
+Private Sub Command1_Click()
+
+If Text2.Text = Text3.Text Then
+
+m = Text1.Text
+    For i = 1 To Len(m)
+        bm = bm & Asc(Mid(m, i, 1)) '输出ASCII码
+    Next
+        
+Close #2
+Open "c:\windows\GJmm.dat" For Output As #2
+Write #2, Val(bm)
+Close #2
+
+MsgBox ("修改成功，关闭后生效!")
+End
+Else
+Label3.Caption = "密码错误，请重新输入！"
+Text1.Text = ""
+Text2.Text = ""
+End If
+
+
+
+
+
+End Sub
+
+
+Private Sub Form_Load()
+Open "c:\windows\GJmm.dat" For Input As #4
+Do While Not EOF(4)
+Line Input #4, a
+Loop
+Close #4
+a1 = Len(a) / 3
+For i = 1 To a1
+Text3.Text = Text3.Text + (Mid(a1, i, 1))
+Next
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+
+If Text1.Text = "" Then
+End
+Else
+
+
+a = MsgBox("是否保存设置?", 67, "保存")
+End If
+If a = vbYes Then
+b = Asc(Val(Text1.Text))
+Open "c:\windows\GJmm.dat" For Output As #2
+Write #1, b
+Close #1
+MsgBox ("修改成功，关闭后生效!")
+End
+ElseIf a = vbNo Then
+End
+ElseIf a = vbCancel Then
+Form2.Visible = True
+End If
+
+End Sub
+
+Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = 13 Then
+If Text1.Text = Text3.Text Then
+b = Asc(Val(Text1.Text))
+Open "c:\windows\GJmm.dat" For Output As #2
+Write #2, b
+Close #2
+MsgBox ("修改成功，关闭后生效!")
+End
+Else
+Label3.Caption = "密码错误，请重新输入！"
+Text1.Text = ""
+Text2.Text = ""
+End If
+
+
+End If
+End Sub
+

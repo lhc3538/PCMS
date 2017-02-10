@@ -1,0 +1,8 @@
+行 97: 控件 Inet1 的类 InetCtlsObjects.Inet 不是一个已加载的控件类。
+行 104: 控件 PB1 的类 MSComctlLib.ProgressBar 不是一个已加载的控件类。
+行 100: 属性名 _ExtentX 在 Inet1 中是无效的。
+行 101: 属性名 _ExtentY 在 Inet1 中是无效的。
+行 102: 属性名 _Version 在 Inet1 中是无效的。
+行 110: 属性名 _ExtentX 在 PB1 中是无效的。
+行 111: 属性名 _ExtentY 在 PB1 中是无效的。
+行 112: 属性名 _Version 在 PB1 中是无效的。
